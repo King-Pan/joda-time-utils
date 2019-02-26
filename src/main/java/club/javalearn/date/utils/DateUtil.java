@@ -18,6 +18,8 @@ public class DateUtil {
      */
     public static final String DEFAULT_DATE_FORMAT = "yyyyMMdd";
 
+    public static final String YYYY_MM_DD = "yyyy-MM-dd";
+
     /**
      * 默认的time格式
      */
@@ -54,11 +56,33 @@ public class DateUtil {
         return now.toString(DEFAULT_TIME_FORMAT);
     }
 
+    public static int getDayOfWeek() {
+        DateTime now = new DateTime();
+        return now.dayOfWeek().get();
+    }
+
+
+    /**
+     * 获取当前日期
+     *
+     * @return
+     */
+    public static String getCurrentDay() {
+        //获取当前时间
+        DateTime now = new DateTime();
+        return now.toString(YYYY_MM_DD);
+    }
+
+    public static boolean isDayOfWeek(int dayOfWeek) {
+        return getDayOfWeek() == dayOfWeek;
+    }
+
 
     public static void main(String[] args) {
         System.out.println(DateUtil.getLastMonday());
         System.out.println(DateUtil.getCurrentTime());
-
-        System.out.println(DateUtil.parseDate("yyyy-MM-dd HH:mm:ss","2019-01-08 01:31:03","yyyyMMddHHmmss"));
+        System.out.println(getDayOfWeek());
+        System.out.println(isDayOfWeek(WeekContonts.FRIDAY));
+        System.out.println(DateUtil.parseDate("yyyy-MM-dd HH:mm:ss", "2019-01-08 01:31:03", "yyyyMMddHHmmss"));
     }
 }
